@@ -13,17 +13,21 @@
 import { ref } from "vue";
 import useSignUp from "../composables/useSignUp";
 
+const emit = defineEmits(['loginToChatroom']);
 let displayName = ref("");
 let email = ref("");
 let password = ref("");
 let error = ref(null);
 const { error: err, createAccount } = useSignUp();
 const signup = async () => {
-  const res = await createAccount(email.value, password.value, displayName.value);
+  const res = await createAccount(
+    email.value,
+    password.value,
+    displayName.value
+  );
+  if (res) emit("loginToChatroom");
   error.value = err;
-}
-
-
+};
 </script>
 
 <style></style>

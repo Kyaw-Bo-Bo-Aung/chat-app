@@ -1,6 +1,5 @@
 import { ref } from "vue";
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
