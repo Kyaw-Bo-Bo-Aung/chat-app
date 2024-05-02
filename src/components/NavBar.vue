@@ -1,19 +1,20 @@
 <template>
-  <nav>
+  <nav v-if="user">
     <div>
-      <p>Hi display name</p>
-      <p class="email">logged in as email</p>
+      <p>Hi {{ user.displayName }}</p>
+      <p class="email">logged in as {{ user.email }}</p>
     </div>
     <button @click="logout">Logout</button>
   </nav>
 </template>
 
 <script setup>
-import { auth } from "@/firebase/config";
 import useLogout from "../composables/useLogout";
-
+import getLoggedInUser from "../composables/getLoggedInUser";
 
 const { logout: signout } = useLogout();
+const { user } = getLoggedInUser();
+
 const logout = async () => {
   await signout();
 };
