@@ -9,7 +9,14 @@ const router = createRouter({
     {
       path: "/",
       name: "Welcome",
-      component: Welcome
+      component: Welcome,
+      beforeEnter: (to, from, next) => {
+        if(!auth.currentUser) {
+          next();
+        } else {
+          next({name: "ChatRoom"})
+        }
+      },
     },
     {
       path: "/chatroom",
