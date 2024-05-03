@@ -18,6 +18,7 @@ let message = ref("");
 const handleSend = async () => {
   if (message.value) {
     const chatMessage = {
+      user_id: user.value.uid,
       message: message.value,
       name: user.value.displayName,
       created_at: serverTimestamp(),
